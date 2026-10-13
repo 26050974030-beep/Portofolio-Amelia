@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amelia Azzarah | Portofolio</title>
+  <meta name="description" content="Portofolio Amelia Azzarah, mahasiswa Pendidikan Teknologi Informasi UNESA.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ Warna & ukuran dasar ============ */
+    :root {
+      --bg: #fff7f8;          /* latar halaman */
+      --ink: #2a1630;         /* teks utama (plum tua) */
+      --muted: #6d5a73;       /* teks sekunder */
+      --blush: #f4b6c2;       /* pink lembut */
+      --mocha: #8a5a44;       /* cokelat kopi */
+      --lilac: #d9c8f0;       /* ungu muda */
+      --berry: #b0365f;       /* aksen tombol */
+      --line: #ecd9de;
+
+      --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+      --radius: 18px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1d1022;
+        --ink: #fbeef1;
+        --muted: #c2adc8;
+        --line: #3b2641;
+        --berry: #f08aa8;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--berry); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: min(1040px, 100% - 2.5rem); margin-inline: auto; }
+    section { padding-block: 5.5rem; }
+    h1, h2, h3 { font-family: var(--font-head); line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.75rem; }
+    p { max-width: 62ch; }
+
+    /* ============ Navigasi ============ */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
+    .brand { font-family: var(--font-head); font-weight: 800; text-decoration: none; font-size: 1.15rem; }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: .95rem; }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ============ Hero ============ */
+    .hero { padding-block: 5rem 4rem; }
+    .hero h1 { font-size: clamp(2.8rem, 9vw, 6.2rem); font-weight: 800; max-width: 12ch; }
+    .hero .sub { margin-top: 1.5rem; font-size: 1.2rem; color: var(--muted); max-width: 46ch; }
+
+    /* Palet warna = menu utama, seperti palet makeup */
+    .palette { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 3rem; list-style: none; }
+    .palette a {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      width: 150px; height: 110px; padding: .85rem 1rem;
+      border-radius: var(--radius);
+      text-decoration: none; font-weight: 600; font-size: .95rem; line-height: 1.25;
+      color: #2a1630;
+      transition: transform .2s ease;
+    }
+    .palette a:hover { transform: translateY(-6px); }
+    .palette li:nth-child(1) a { background: var(--blush); }
+    .palette li:nth-child(2) a { background: var(--lilac); }
+    .palette li:nth-child(3) a { background: #e3b99f; }
+    .palette li:nth-child(4) a { background: #f6d5a8; }
+
+    /* satu animasi saat halaman dibuka */
+    @media (prefers-reduced-motion: no-preference) {
+      .palette li { animation: pop .6s cubic-bezier(.2,.8,.3,1) both; }
+      .palette li:nth-child(2) { animation-delay: .08s; }
+      .palette li:nth-child(3) { animation-delay: .16s; }
+      .palette li:nth-child(4) { animation-delay: .24s; }
+      @keyframes pop { from { opacity: 0; transform: translateY(24px) scale(.94); } }
+    }
+
+    /* ============ About ============ */
+    .about-grid { display: grid; grid-template-columns: 240px 1fr; gap: 3rem; align-items: start; }
+    .avatar {
+      aspect-ratio: 1; border-radius: 50%;
+      background: var(--blush); color: #2a1630;
+      display: grid; place-items: center;
+      font-family: var(--font-head); font-weight: 800; font-size: 4.5rem;
+      overflow: hidden;
+    }
+    .avatar { border: 6px solid var(--blush); }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+    .about-text p + p { margin-top: 1.1rem; }
+
+    /* ============ What I Can Do ============ */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem; list-style: none; }
+    .skill { padding: 1.6rem; border: 1px solid var(--line); border-radius: var(--radius); }
+    .skill .dot { display: block; width: 36px; height: 36px; border-radius: 50%; margin-bottom: 1rem; }
+    .skill h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+    .skill p { color: var(--muted); font-size: 1rem; }
+
+    /* ============ Achievement ============ */
+    .achievements { display: grid; gap: 1.25rem; }
+    .ach { padding: 1.6rem 1.8rem; border-radius: var(--radius); border-left: 8px solid var(--blush); background: color-mix(in srgb, var(--blush) 16%, var(--bg)); }
+    .ach:nth-child(2) { border-left-color: var(--lilac); background: color-mix(in srgb, var(--lilac) 18%, var(--bg)); }
+    .ach:nth-child(3) { border-left-color: var(--mocha); background: color-mix(in srgb, var(--mocha) 12%, var(--bg)); }
+    .ach h3 { font-size: 1.35rem; margin-bottom: .6rem; }
+    .ach p + p { margin-top: .8rem; }
+    .ach p { color: var(--muted); }
+
+    /* ============ Contact ============ */
+    .contact { background: var(--ink); color: var(--bg); border-radius: 32px 32px 0 0; }
+    .contact h2 { font-size: clamp(2.4rem, 7vw, 4.5rem); }
+    .contact p { color: color-mix(in srgb, var(--bg) 78%, transparent); }
+    .contact-list { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .8rem; list-style: none; }
+    .contact-list a {
+      display: inline-block; padding: .8rem 1.4rem; border-radius: 999px;
+      background: var(--blush); color: #2a1630; font-weight: 600; text-decoration: none;
+      transition: transform .2s ease;
+    }
+    .contact-list a:hover { transform: translateY(-3px); }
+    footer { text-align: center; padding: 1.5rem; font-size: .9rem; color: color-mix(in srgb, var(--bg) 60%, transparent); background: var(--ink); }
+
+    /* ============ Layar kecil ============ */
+    @media (max-width: 720px) {
+      section { padding-block: 4rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+      .avatar { width: 150px; font-size: 3rem; }
+      .nav-links { gap: .9rem; }
+      .nav-links a { font-size: .85rem; }
+      .palette a { width: calc(50% - .45rem); }
+      .palette li { display: contents; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="wrap" aria-label="Navigasi utama">
+      <a class="brand" href="#top">Amelia Azzarah</a>
+      <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#skills">What I Can Do</a></li>
+        <li><a href="#achievement">Achievement</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <div class="hero wrap">
+      <h1>Halo, aku Amelia Azzarah!</h1>
+      <p class="sub">Mahasiswa Pendidikan Teknologi Informasi di Universitas Negeri Surabaya yang sedang belajar membuat website.</p>
+      <ul class="palette">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#skills">What I Can Do</a></li>
+        <li><a href="#achievement">Achievement</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- 1. ABOUT ME -->
+    <section id="about">
+      <div class="wrap">
+        <h2>About Me</h2>
+        <div class="about-grid">
+          <!-- File foto.png harus berada di folder yang sama dengan index.html -->
+          <div class="avatar"><img src="foto.png" alt="Foto Amelia Azzarah"></div>
+
+          <div class="about-text">
+            <p>Halo, aku Amelia Azzarah! Aku adalah mahasiswa Pendidikan Teknologi Informasi di Universitas Negeri Surabaya (UNESA). Saat ini, aku sedang memulai perjalanan untuk mengenal lebih jauh dunia teknologi, khususnya pemrograman dan pengembangan website.</p>
+            <p>Aku termasuk orang yang suka bertemu orang baru, mencoba hal-hal baru, dan mengeksplorasi ide kreatif. Dunia coding masih terbilang baru buatku karena sebelumnya aku belum pernah mempelajarinya. Namun, aku ingin terus belajar, menambah pengalaman, dan mengembangkan kemampuan yang aku miliki.</p>
+            <p>Di luar perkuliahan, aku suka mendengarkan musik, makeup, dan menghabiskan waktu di coffee shop. Aku percaya bahwa setiap pengalaman bisa menjadi kesempatan untuk mengenal diri sendiri dan berkembang menjadi lebih baik.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WHAT I CAN DO -->
+    <section id="skills">
+      <div class="wrap">
+        <h2>What I Can Do</h2>
+        <p style="margin-bottom:2rem;color:var(--muted)">Kemampuan yang aku miliki</p>
+        <ul class="skills">
+          <li class="skill">
+            <span class="dot" style="background:var(--blush)"></span>
+            <h3>Komunikasi</h3>
+            <p>Aku senang bertemu orang baru, bertukar pikiran, dan membangun hubungan dengan orang lain. Bagiku, komunikasi menjadi salah satu cara untuk mendapatkan pengalaman dan sudut pandang baru.</p>
+          </li>
+          <li class="skill">
+            <span class="dot" style="background:var(--lilac)"></span>
+            <h3>Kerja Sama Tim</h3>
+            <p>Melalui kegiatan organisasi dan kepanitiaan, aku belajar bekerja sama dengan orang lain, menghargai pendapat, dan menjalankan tanggung jawab bersama.</p>
+          </li>
+          <li class="skill">
+            <span class="dot" style="background:#e3b99f"></span>
+            <h3>Pengelolaan Kegiatan</h3>
+            <p>Aku memiliki pengalaman terlibat dalam kepanitiaan dan kegiatan organisasi. Dari pengalaman tersebut, aku belajar mengenai tanggung jawab, persiapan kegiatan, dan pentingnya koordinasi.</p>
+          </li>
+          <li class="skill">
+            <span class="dot" style="background:#f6d5a8"></span>
+            <h3>Kreativitas</h3>
+            <p>Aku tertarik mengeksplorasi ide-ide baru dan mencoba berbagai hal yang bisa mengembangkan kreativitas. Aku juga memiliki ketertarikan pada makeup sebagai salah satu bentuk ekspresi kreatif.</p>
+          </li>
+          <li class="skill">
+            <span class="dot" style="background:var(--blush)"></span>
+            <h3>Kemauan untuk Belajar</h3>
+            <p>Aku sedang mengembangkan kemampuan di bidang teknologi, khususnya pemrograman dan pengembangan website. Meskipun masih pemula, aku ingin terus belajar dan mencoba hal-hal baru.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. ACHIEVEMENT -->
+    <section id="achievement">
+      <div class="wrap">
+        <h2>Achievement</h2>
+        <p style="margin-bottom:2rem;color:var(--muted)">Pengalaman dan keterlibatan</p>
+        <div class="achievements">
+          <article class="ach">
+            <h3>Kepanitiaan Acara Paskibra</h3>
+            <p>Aku pernah terlibat dalam kepanitiaan acara Paskibra. Melalui pengalaman ini, aku belajar bekerja sama dalam tim, berkomunikasi, serta menjalankan tanggung jawab untuk mendukung kelancaran kegiatan.</p>
+          </article>
+          <article class="ach">
+            <h3>Gold Engineering Club (GEC)</h3>
+            <p>Aku terlibat dalam kegiatan Gold Engineering Club pada Seksi Bidang Sipil. Kegiatanku berkaitan dengan program kerja serta lomba yang diselenggarakan oleh kampus sesuai dengan bidang tersebut.</p>
+            <p>Pengalaman ini memberiku kesempatan untuk mengenal kegiatan organisasi, belajar berkoordinasi, dan ikut berkontribusi dalam menjalankan program kerja.</p>
+          </article>
+          <article class="ach">
+            <h3>Perjalanan di Bidang Teknologi</h3>
+            <p>Saat ini, aku sedang menempuh pendidikan Pendidikan Teknologi Informasi di Universitas Negeri Surabaya. Aku mulai mempelajari pemrograman dan pengembangan website sebagai langkah awal untuk mengembangkan kemampuan di bidang teknologi.</p>
+            <p>Bagiku, perjalanan ini merupakan kesempatan untuk terus belajar, mencoba hal baru, dan mempersiapkan diri untuk menciptakan karya di masa depan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CONTACT -->
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Let's Connect!</h2>
+        <p>Aku terbuka untuk bertemu orang baru, bertukar ide, dan mendapatkan pengalaman baru yang bisa membantuku berkembang.</p>
+        <p style="margin-top:1rem">Jika ingin mengenal atau terhubung denganku, kamu bisa menghubungiku melalui informasi berikut.</p>
+
+        <ul class="contact-list">
+          <li><a href="mailto:ameliaazzarah90@gmail.com">Email</a></li>
+          <li><a href="https://www.instagram.com/camellzh" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/amelia-azzarah-1893aa441/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <!-- File CV harus satu folder dengan index.html -->
+          <li><a href="CV_Amelia_Azzarah.pdf" target="_blank" rel="noopener">Lihat CV</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Amelia Azzarah</footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
